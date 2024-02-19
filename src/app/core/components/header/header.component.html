@@ -1,0 +1,32 @@
+<nav
+  *ngIf="headerService.isVisible"
+  fxLayout="row"
+  fxLayoutAlign="space-between center"
+  class="nav container"
+>
+  <h1>
+    <a routerLink="/">Agile Boards</a>
+  </h1>
+  <div
+    *ngIf="!authService.isLoggedIn(); else logedin"
+    fxLayout="row"
+    fxLayoutGap="10"
+  >
+    <a mat-flat-button color="primary" routerLink="/signup" class="nav-btn"
+      >Sign Up</a
+    >
+    <a mat-stroked-button color="primary" routerLink="/login" class="nav-btn"
+      >Login</a
+    >
+  </div>
+  <ng-template #logedin>
+    <div fxLayout="row" fxLayoutGap="10">
+      <a routerLink="/boards/tasks">Tasks</a>
+      <a routerLink="/boards/projects">Projects</a>
+      <a routerLink="/boards/profile">Profile</a>
+      <button mat-icon-button color="primary" (click)="logout()">
+        <mat-icon>logout</mat-icon>
+      </button>
+    </div>
+  </ng-template>
+</nav>
